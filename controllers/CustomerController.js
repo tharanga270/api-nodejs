@@ -8,6 +8,7 @@ DELETE-> remove
 */
 
 const saveCustomer = (req,resp)=>{
+    console.log(resp.body);
     const tempCustomer = new Customer({
         nic:req.body.nic,
         name:req.body.name,
