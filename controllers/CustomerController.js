@@ -8,7 +8,6 @@ DELETE-> remove
 */
 
 const saveCustomer = (req,resp)=>{
-    console.log(resp.body);
     const tempCustomer = new Customer({
         nic:req.body.nic,
         name:req.body.name,
@@ -33,6 +32,7 @@ const findCustomer = (req,resp)=>{
     });
 };
 const updateCustomer = (req,resp)=>{
+    //console.log(req.headers.nic);
     Customer.updateOne({nic:req.headers.nic},{
         $set:{
             name:req.body.name,
@@ -40,7 +40,8 @@ const updateCustomer = (req,resp)=>{
             salary:req.body.salary
         }
     }).then(result=>{
-        if(result.nModified>0){
+        //console.log(result);
+        if(result.modifiedCount>0){
             resp.status(201).json({status:true, message:'customer was Updated!'});
         }else{
             resp.status(200).json({status:false, message:'try again!'});
